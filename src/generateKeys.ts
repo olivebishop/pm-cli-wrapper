@@ -1,8 +1,12 @@
 import { Wallet } from 'ethers';
+import dotenv from 'dotenv';
 
-const privateKey = "0xbbf404d172f62ed72b309c652e6be267d7c1007a3979205e401c10d4483ac891"; // Your private key
+// Load environment variables
+dotenv.config();
+
+const privateKey = process.env.PRIVATE_KEY as string; 
 const wallet = new Wallet(privateKey);
-const host = "https://clob.polymarket.com";
+const host = process.env.API_HOST || "https://clob.polymarket.com";
 const timestamp = Math.floor(Date.now() / 1000).toString();
 const nonce = "0";
 const message = `GET/auth/derive-api-key${timestamp}${nonce}`;
